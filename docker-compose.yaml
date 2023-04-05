@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  news-module-backend:
+      build: 
+         context: ./src
+         dockerfile: Dockerfile
+      expose:
+         - 13001
+      ports:
+         - 13001:80
+      depends_on:
+         - news-module-database
+      env_file:
+         - src/env.env
+  news-module-database:
+     image: mcr.microsoft.com/mssql/server:2019-latest
+     ports:
+      - 1433:1433
+     environment:
+        ACCEPT_EULA: Y
+        MSSQL_SA_PASSWORD: Password12*
+        MSSQL_PID: Express
+     volumes:
+     - news-module-database-volume:/var/opt/mssql
+  news-module-sqlpad:
+    image: sqlpad/sqlpad:latest
+    ports:
+    - 4000:3000
+    environment:
+      SQLPAD_ADMIN: 'admin@enginyenice.com'
+      SQLPAD_ADMIN_PASSWORD: 'Password12*'
+      SQLPAD_APP_LOG_LEVEL: info
+      SQLPAD_WEB_LOG_LEVEL: warn 
+    volumes:
+    - news-module-sqlpad-volume:/var/lib/sqlpad
+    depends_on:
+     - news-module-database
+  news-module-frontend:
+    build:
+      context: ./news-module-frontend
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    restart: always
+    depends_on:
+      - news-module-backend
+      - news-module-database
+networks:
+  general:
+    name: news-module-network
+    driver: news-module-network-driver
+volumes:
+   news-module-database-volume:
+   news-module-sqlpad-volume: 
+
+    

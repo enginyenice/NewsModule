@@ -1,0 +1,13 @@
+<form [formGroup]="createNewsForm" (ngSubmit)="create()">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Title</span>
+        <input type="text" formControlName="title" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group">
+        <span class="input-group-text">Description</span>
+        <textarea formControlName="description" class="form-control" aria-label="Description"></textarea>
+    </div>
+    <div class="text-end mt-2">
+        <button type="submit" class="btn btn-success">Add</button>
+    </div>
+</form>

@@ -1,0 +1,25 @@
+<div>
+  <div class="text-end">
+  <a [routerLink]="['/news/create']" type="button" class="btn btn-primary">Add</a>  
+</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of News">
+        <td>{{item.id}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.description}}</td>
+        <th><a [routerLink]="['update',item.id]" type="button" class="btn btn-primary">Update</a></th>
+        <th><button type="button" class="btn btn-danger" (click)="delete(item.id)" >Delete</button></th>
+      </tr>
+    </tbody>
+</table>
+</div>
