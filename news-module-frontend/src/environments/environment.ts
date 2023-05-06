@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    domain: "https://api.newsmodule.enginyenice.com/api"
+    domain: "http://api.newsmodule.enginyenice.com/api"
 };
