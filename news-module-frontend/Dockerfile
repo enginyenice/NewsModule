@@ -1,12 +1,12 @@
 FROM node:16.16.0 as build
-
+ENV CONF 'development'
 WORKDIR /usr/local/app
 
 COPY ./ /usr/local/app/
 
 RUN npm install --legacy-peer-deps
 
-RUN npm run build
+RUN npm run build --configuration=${CONF}
 
 FROM nginx:latest
 

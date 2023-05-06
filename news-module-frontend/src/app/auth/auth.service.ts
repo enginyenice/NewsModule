@@ -4,14 +4,14 @@ import { LoginModel } from './models/login-model';
 import { Token } from './models/token-model';
 import { Observable } from 'rxjs';
 import { RegisterModel } from './models/register-model';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseURL: string = `${environment.settings.backend}/User`;
+  private baseURL: string = `${environment.domain}/User`;
   constructor(private http: HttpClient) { 
   }
 

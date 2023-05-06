@@ -4,14 +4,14 @@ import { NewsModel } from './models/news-model';
 import { Observable } from 'rxjs';
 import { CreateNewsModel } from './models/create-news-model';
 import { UpdateNewsModel } from './models/update-news-model';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewsService {
   
-  private baseURL: string = `${environment.settings.backend}/News`;
+  private baseURL: string = `${environment.domain}/News`;
   constructor(private http: HttpClient) { }
 
   getAll() : Observable<NewsModel[]> {

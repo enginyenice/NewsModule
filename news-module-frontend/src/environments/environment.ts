@@ -1,6 +1,4 @@
 export const environment = {
-    name:"product",
-    settings: {
-        backend: "http://localhost:13001/api"
-    }
+    production: true,
+    domain: "https://api.newsmodule.enginyenice.com/api"
 };
