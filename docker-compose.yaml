@@ -42,6 +42,8 @@ services:
     ports:
       - 2601:80
     restart: always
+    environment:
+      - API_LINK=http://188.132.201.176:13001/
     depends_on:
       - news-module-backend
       - news-module-database
