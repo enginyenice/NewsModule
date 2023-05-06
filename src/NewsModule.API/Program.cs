@@ -53,7 +53,9 @@ builder.Services.AddDataAccessConfiguration(builder.Configuration);
 builder.Services.AddBusinessConfiguration(builder.Configuration);
 
 var app = builder.Build();
-NewsDataContext dbcontext = app.Services.GetRequiredService<NewsDataContext>();
+
+using var scope = app.Services.CreateScope();
+NewsDataContext dbcontext = scope.ServiceProvider.GetRequiredService<NewsDataContext>();
 dbcontext.Database.EnsureCreated();
 //Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
